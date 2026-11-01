@@ -1,0 +1,7 @@
+{
+  "name": "Cupertino Eco-IoT - La Cocha",
+  "description": "Estación meteorológica y ambiental IoT comunitaria de la Escuela Técnica N° 1 La Cocha, Tucumán. Telemetría de ThingSpeak, alertas tempranas con IA Gemini y libro de visitas.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
