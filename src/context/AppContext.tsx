@@ -342,8 +342,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       if (readKey2) queryParams.set('readKey2', readKey2);
       queryParams.set('results', '100');
 
-      const url = `https://cupertino-eco-iot-la-cocha-2.onrender.com/api/thingspeak?${queryParams.toString()}`;
-      const res = await fetch(url);
+      const res = await fetch(`https://cupertino-eco-iot-la-cocha-2.onrender.com/api/thingspeak/feeds?${queryParams.toString()}`);
       if (!res.ok) {
         const errorData = await res.json().catch(() => ({}));
         throw new Error(errorData.error || `Error HTTP ${res.status}`);

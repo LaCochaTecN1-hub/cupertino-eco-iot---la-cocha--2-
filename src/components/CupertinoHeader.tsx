@@ -46,7 +46,7 @@ export const CupertinoHeader: React.FC<CupertinoHeaderProps> = ({
     : null;
 
   return (
-    <header className="sticky top-0 z-40 w-full cupertino-glass border-b border-slate-200/60 dark:border-white/10 transition-colors duration-200">
+    <header className="sticky top-0 z-40 w-full cupertino-glass border-b border-slate-200/60 dark:border-white/10 transition-colors duration-200 pt-[env(safe-area-inset-top)]">
       {/* iOS Top Status Bar y Dynamic Island */}
       <div className="flex items-center justify-between px-6 pt-2 pb-1 text-xs font-semibold tracking-tight text-slate-800 dark:text-slate-200">
         <span className="w-16">{currentTimeStr}</span>
