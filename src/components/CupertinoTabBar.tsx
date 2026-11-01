@@ -31,7 +31,7 @@ export const CupertinoTabBar: React.FC = () => {
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-40 w-full cupertino-glass border-t border-slate-200/60 dark:border-white/10 safe-area-bottom">
+    <nav className="fixed bottom-0 left-0 right-0 z-40 w-full cupertino-glass border-t border-slate-200/60 dark:border-white/10 safe-area-bottom pb-[env(safe-area-inset-bottom)]">
       <div className="max-w-md mx-auto flex items-center overflow-x-auto no-scrollbar justify-start gap-3 px-4 py-1">
         {tabs.map((tab) => {
           const Icon = tab.icon;

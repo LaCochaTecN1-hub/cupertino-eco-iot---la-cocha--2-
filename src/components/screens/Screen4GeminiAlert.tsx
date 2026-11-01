@@ -147,7 +147,7 @@ export const Screen4GeminiAlert: React.FC = () => {
     setGenerating(true);
     setError(null);
     try {
-      const response = await fetch('/api/gemini/alert', {
+      const response = await fetch('https://cupertino-eco-iot-la-cocha-2.onrender.com/api/gemini/alert', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

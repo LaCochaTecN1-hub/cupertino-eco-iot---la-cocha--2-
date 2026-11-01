@@ -290,10 +290,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const logoutAdmin = () => setIsAdmin(false);
 
   // 4. ThingSpeak 2 Channels Config (CERO CANAL 9 / VACÍO POR DEFECTO)
-  const [channelId, setChannelId] = useState<string>('');
-  const [readKey, setReadKey] = useState<string>('');
-  const [channelId2, setChannelId2] = useState<string>('');
-  const [readKey2, setReadKey2] = useState<string>('');
+  const [channelId, setChannelId] = useState<string>(() => localStorage.getItem('channelId') || '');
+  const [readKey, setReadKey] = useState<string>(() => localStorage.getItem('readKey') || '');
+  const [channelId2, setChannelId2] = useState<string>(() => localStorage.getItem('channelId2') || '');
+  const [readKey2, setReadKey2] = useState<string>(() => localStorage.getItem('readKey2') || '');
 
   const [channelInfo1, setChannelInfo1] = useState<ThingSpeakChannel | null>(null);
   const [channelInfo2, setChannelInfo2] = useState<ThingSpeakChannel | null>(null);
@@ -310,7 +310,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   // Load server-side initial config
   useEffect(() => {
-    fetch('/api/config')
+    fetch('https://cupertino-eco-iot-la-cocha-2.onrender.com/api/config')
       .then(res => res.json())
       .then(data => {
         if (data.channelId) setChannelId(String(data.channelId));
@@ -324,8 +324,13 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setReadKey(k1.trim());
     setChannelId2(c2.trim());
     setReadKey2(k2.trim());
+    
+    localStorage.setItem('channelId', c1.trim());
+    localStorage.setItem('readKey', k1.trim());
+    localStorage.setItem('channelId2', c2.trim());
+    localStorage.setItem('readKey2', k2.trim());
   };
-
+  
   const fetchFeeds = useCallback(async () => {
     setLoading(true);
     setError(null);
@@ -337,7 +342,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       if (readKey2) queryParams.set('readKey2', readKey2);
       queryParams.set('results', '100');
 
-      const res = await fetch(`/api/thingspeak/feeds?${queryParams.toString()}`);
+      const url = `https://cupertino-eco-iot-la-cocha-2.onrender.com/api/thingspeak?${queryParams.toString()}`;
+      const res = await fetch(url);
       if (!res.ok) {
         const errorData = await res.json().catch(() => ({}));
         throw new Error(errorData.error || `Error HTTP ${res.status}`);

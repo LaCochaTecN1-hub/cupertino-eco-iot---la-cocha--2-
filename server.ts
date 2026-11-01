@@ -4,10 +4,12 @@ import { GoogleGenAI } from '@google/genai';
 import dotenv from 'dotenv';
 import fs from 'fs';
 import path from 'path';
+import cors from 'cors';
 
 dotenv.config();
 
 const app = express();
+app.use(cors());
 const PORT = parseInt(process.env.PORT || '3000', 10);
 
 app.use(express.json());
